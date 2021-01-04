@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default class About extends Component {
     render() {
         return (
-          <div className="about-explaination">
+          <div className="box">
             <p>
               Hey you don't need a kid right now, get a pet.
           
@@ -16,7 +16,7 @@ export default class About extends Component {
             />
             <div className="buttons">
               <Link to={"/adopt"}>
-                <button type="submit">Find a Pet </button>
+                <button className='btn' type="submit">Find a Pet </button>
               </Link>
             </div>
           </div>

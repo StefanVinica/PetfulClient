@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {REACT_APP_API_BASE_URL} from '../config'
 import Services from '../services/services'
 
 
@@ -78,21 +77,9 @@ export default class Adopt extends Component {
             return;
         }
         if (counter % 2 === 0) {
-            fetch(`${REACT_APP_API_BASE_URL}/pets`, {
-                method: "DELETE",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify({ type: "cat" }),
-            }).then(() => this.fetchData());
+           Services.dequeueCat().then(() => this.fetchData());
         } else {
-            fetch(`${REACT_APP_API_BASE_URL}/pets`, {
-                method: "DELETE",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify({ type: "dog" }),
-            }).then(() => this.fetchData());
+            Services.dequeueDog().then(() => this.fetchData());
         }
     }
 
@@ -112,11 +99,11 @@ export default class Adopt extends Component {
     }
 
     handleAdoptClickDog = () => {
-        Services.dequeue('dog')
+        Services.dequeueDog()
         .then(() => this.fetchData())
     }
     handleAdoptClickCat = () => {
-        Services.dequeue('cat')
+        Services.dequeueCat()
         .then(() => this.fetchData())
     }
 
@@ -151,8 +138,8 @@ export default class Adopt extends Component {
         }
         
         return(
-            <section>
-            <div>
+            <section className='box'>
+            <div className='boxbody'>
                 <h2>{cat.name}</h2>
                 <img src={cat.imageURL} alt="Landing Cat" />
                 <p>Gender: {cat.gender}</p>
@@ -161,7 +148,7 @@ export default class Adopt extends Component {
                 <p>Story: {cat.story}</p>
                 {this.showButtonCat()}
             </div>
-            <div>
+            <div className='boxbody'>
                 <h2>{dog.name}</h2>
                 <img src={dog.imageURL} alt="Landing Dog" />
                 <p>Gender: {dog.gender}</p>
@@ -170,8 +157,8 @@ export default class Adopt extends Component {
                 <p>Story: {dog.story}</p>
                 {this.showButtonDog()}
             </div>
-            <div className='People'>
-                <h2>People in Line</h2>
+            <div className='box'>
+                <h2 className='boxtitle'>People in Line</h2>
                 <ul>
                 {this.renderPeople()}
                 </ul>
@@ -187,7 +174,9 @@ export default class Adopt extends Component {
                             type="text"
                             id="full-name"
                         />
-                        <button>Join Our Queue</button>
+                    </div>
+                    <div className='boxfooter'>
+                        <button className='btn'>Join Our Queue</button>
                     </div>
                 </form>
             </div>

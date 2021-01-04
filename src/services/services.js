@@ -25,15 +25,24 @@ const Services = {
         body: JSON.stringify({ person }),
     })  
     },
-    dequeue(dtype){
+    dequeueDog(){
       return fetch(`${REACT_APP_API_BASE_URL}/pets`, {
-            method: "DELETE",
-            header: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify({type:dtype}),
-        })
-    }
+        method: "DELETE",
+        headers: {
+            "content-type": "application/json",
+        },
+        body: JSON.stringify({ type: "dog" }),
+    })
+    },
+    dequeueCat(){
+        return fetch(`${REACT_APP_API_BASE_URL}/pets`, {
+          method: "DELETE",
+          headers: {
+              "content-type": "application/json",
+          },
+          body: JSON.stringify({ type: "cat" }),
+      })
+      }
     
 }
 export default Services
