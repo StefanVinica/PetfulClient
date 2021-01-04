@@ -1,7 +1,7 @@
-import config from '../config'
+import {REACT_APP_API_BASE_URL} from '../config'
 const Services = {
     getPeople(){
-        return fetch(`${config.API_BASE_URL}/people`)
+        return fetch(`${REACT_APP_API_BASE_URL}/people`)
         .then(res =>
                 (!res.ok)
                   ? res.json().then(e => Promise.reject(e))
@@ -9,7 +9,7 @@ const Services = {
               )
     },
     getPets(){
-        return fetch(`${config.API_BASE_URL}/pets`)
+        return fetch(`${REACT_APP_API_BASE_URL}/pets`)
         .then(res =>
                 (!res.ok)
                   ? res.json().then(e => Promise.reject(e))
@@ -17,7 +17,7 @@ const Services = {
               )
     },
     postPets(person){
-      return fetch(`${config.API_BASE_URL}/people`, {
+      return fetch(`${REACT_APP_API_BASE_URL}/people`, {
         method: "POST",
         headers: {
             "content-type": "application/json",
@@ -26,7 +26,7 @@ const Services = {
     })  
     },
     dequeue(dtype){
-      return fetch(`${config.API_BASE_URL}/pets`, {
+      return fetch(`${REACT_APP_API_BASE_URL}/pets`, {
             method: "DELETE",
             header: {
                 "content-type": "application/json",

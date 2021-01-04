@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import config from '../config'
+import {REACT_APP_API_BASE_URL} from '../config'
 import Services from '../services/services'
 
-import { Link } from 'react-router-dom'
 
 export default class Adopt extends Component {
     constructor() {
@@ -79,7 +78,7 @@ export default class Adopt extends Component {
             return;
         }
         if (counter % 2 === 0) {
-            fetch(`${config.API_BASE_URL}/pets`, {
+            fetch(`${REACT_APP_API_BASE_URL}/pets`, {
                 method: "DELETE",
                 headers: {
                     "content-type": "application/json",
@@ -87,7 +86,7 @@ export default class Adopt extends Component {
                 body: JSON.stringify({ type: "cat" }),
             }).then(() => this.fetchData());
         } else {
-            fetch(`${config.API_BASE_URL}/pets`, {
+            fetch(`${REACT_APP_API_BASE_URL}/pets`, {
                 method: "DELETE",
                 headers: {
                     "content-type": "application/json",
